@@ -18,35 +18,29 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Organize Project Structure
+    - name: Organize Project Files
       run: |
         mkdir -p app/src/main
         shopt -s extglob
-        # Move all project files except .github into the app directory
         for f in *; do
           if [ "$f" != "app" ] && [ "$f" != ".github" ]; then
             mv "$f" app/
           fi
         done
-        # Ensure a basic build.gradle or build.gradle.kts exists inside app/
         if [ ! -f "app/build.gradle.kts" ] && [ ! -f "app/build.gradle" ]; then
           echo "plugins { id('com.android.application') }" > app/build.gradle.kts
         fi
 
-    - name: Generate Gradle Wrapper
-      working-directory: ./app
-      run: gradle wrapper
-
-    - name: Grant execute permission for gradlew
-      working-directory: ./app
-      run: chmod +x gradlew
-
-    - name: Build APK with Gradle
-      working-directory: ./app
-      run: ./gradlew assembleDebug
+    - name: Build APK Directly
+      run: |
+        cd app
+        gradle wrapper --gradle-version 8.5
+        chmod +x gradlew
+        ./gradlew assembleDebug
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
         name: app-debug-apk
         path: app/build/outputs/apk/debug/app-debug.apk
+        
