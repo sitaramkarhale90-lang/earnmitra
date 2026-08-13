@@ -18,8 +18,9 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Organize Project Files
+    - name: Clean and Setup Project Directory
       run: |
+        rm -rf app
         mkdir -p app/src/main
         shopt -s extglob
         for f in *; do
