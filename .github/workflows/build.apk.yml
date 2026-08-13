@@ -18,23 +18,14 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Clean and Setup Project Directory
+    - name: Ensure Build Gradle Exists
       run: |
-        rm -rf app
-        mkdir -p app/src/main
-        shopt -s extglob
-        for f in *; do
-          if [ "$f" != "app" ] && [ "$f" != ".github" ]; then
-            mv "$f" app/
-          fi
-        done
-        if [ ! -f "app/build.gradle.kts" ] && [ ! -f "app/build.gradle" ]; then
-          echo "plugins { id('com.android.application') }" > app/build.gradle.kts
+        if [ ! -f "build.gradle.kts" ] && [ ! -f "build.gradle" ]; then
+          echo "plugins { id('com.android.application') }" > build.gradle.kts
         fi
 
-    - name: Build APK Directly
+    - name: Build APK in Root Directory
       run: |
-        cd app
         gradle wrapper --gradle-version 8.5
         chmod +x gradlew
         ./gradlew assembleDebug
@@ -43,5 +34,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: app-debug-apk
-        path: app/build/outputs/apk/debug/app-debug.apk
+        path: build/outputs/apk/debug/app-debug.apk
         
