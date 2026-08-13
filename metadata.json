@@ -1,0 +1,6 @@
+{
+  "name": "EarnMitra",
+  "description": "Indian rewards and wallet platform with daily check-ins, offerwalls, games, recharges, and secure UPI withdrawals.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

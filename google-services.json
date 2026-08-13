@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "759487877750",
+    "project_id": "earnmitra-669c5",
+    "storage_bucket": "earnmitra-669c5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759487877750:android:488fad354a40179dfa0557",
+        "android_client_info": {
+          "package_name": "com.aistudio.earnmitra.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXrDY2uHZeWPFEy00R_4LmKlCCNZp9xHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
